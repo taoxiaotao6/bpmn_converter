@@ -33,6 +33,7 @@ public enum BpmnElementType {
   SERVICE_TASK("serviceTask", ServiceTask.class),
   RECEIVE_TASK("receiveTask", ReceiveTask.class),
   USER_TASK("userTask", UserTask.class),
+    USER_TASK_OR_SIGN("userTaskOrSign", UserTask.class),
   MANUAL_TASK("manualTask", ManualTask.class),
 
   // Gateways

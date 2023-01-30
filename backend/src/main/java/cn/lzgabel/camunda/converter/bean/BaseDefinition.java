@@ -41,6 +41,7 @@ import lombok.experimental.SuperBuilder;
 
   // task
   @JsonSubTypes.Type(value = UserTaskDefinition.class, name = "userTask"),
+        @JsonSubTypes.Type(value = UserTaskOrSignDefinition.class, name = "userTaskOrSign"),
   @JsonSubTypes.Type(value = ScriptTaskDefinition.class, name = "scriptTask"),
   @JsonSubTypes.Type(value = ReceiveTaskDefinition.class, name = "receiveTask"),
   @JsonSubTypes.Type(value = ManualTaskDefinition.class, name = "manualTask"),
