@@ -7,6 +7,7 @@ import cn.lzgabel.camunda.converter.processing.container.SubProcessProcessor;
 import cn.lzgabel.camunda.converter.processing.event.EndEventProcessor;
 import cn.lzgabel.camunda.converter.processing.event.IntermediateCatchEventProcessor;
 import cn.lzgabel.camunda.converter.processing.event.StartEventProcessor;
+import cn.lzgabel.camunda.converter.processing.event.timer.BoundaryTimerEventProcessor;
 import cn.lzgabel.camunda.converter.processing.gateway.ExclusiveGatewayProcessor;
 import cn.lzgabel.camunda.converter.processing.gateway.InclusiveGatewayProcessor;
 import cn.lzgabel.camunda.converter.processing.gateway.ParallelGatewayProcessor;
@@ -41,6 +42,7 @@ public final class BpmnElementProcessors {
     // events
     processors.put(BpmnElementType.START_EVENT, new StartEventProcessor());
     processors.put(BpmnElementType.END_EVENT, new EndEventProcessor());
+    processors.put(BpmnElementType.BOUNDARY_EVENT, new BoundaryTimerEventProcessor());
     processors.put(BpmnElementType.INTERMEDIATE_CATCH_EVENT, new IntermediateCatchEventProcessor());
   }
 

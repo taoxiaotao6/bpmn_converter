@@ -3,6 +3,7 @@ package cn.lzgabel.camunda.converter.bean;
 import cn.lzgabel.camunda.converter.bean.event.intermediate.IntermediateCatchEventDefinition;
 import cn.lzgabel.camunda.converter.bean.event.start.EndEventDefinition;
 import cn.lzgabel.camunda.converter.bean.event.start.StartEventDefinition;
+import cn.lzgabel.camunda.converter.bean.event.timer.BoundaryTimerEventDefinition;
 import cn.lzgabel.camunda.converter.bean.gateway.ExclusiveGatewayDefinition;
 import cn.lzgabel.camunda.converter.bean.gateway.InclusiveGatewayDefinition;
 import cn.lzgabel.camunda.converter.bean.gateway.ParallelGatewayDefinition;
@@ -38,10 +39,11 @@ import lombok.experimental.SuperBuilder;
   // event
   @JsonSubTypes.Type(value = StartEventDefinition.class, name = "startEvent"),
   @JsonSubTypes.Type(value = EndEventDefinition.class, name = "endEvent"),
+  @JsonSubTypes.Type(value = BoundaryTimerEventDefinition.class, name = "boundaryEvent"),
 
   // task
   @JsonSubTypes.Type(value = UserTaskDefinition.class, name = "userTask"),
-        @JsonSubTypes.Type(value = UserTaskOrSignDefinition.class, name = "userTaskOrSign"),
+  @JsonSubTypes.Type(value = UserTaskOrSignDefinition.class, name = "userTaskOrSign"),
   @JsonSubTypes.Type(value = ScriptTaskDefinition.class, name = "scriptTask"),
   @JsonSubTypes.Type(value = ReceiveTaskDefinition.class, name = "receiveTask"),
   @JsonSubTypes.Type(value = ManualTaskDefinition.class, name = "manualTask"),

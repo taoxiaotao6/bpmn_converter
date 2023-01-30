@@ -1132,4 +1132,45 @@ public class BpmnBuilderTest {
         Files.createDirectories(path.getParent());
         Bpmn.writeModelToFile(Files.createFile(path).toFile(), bpmnModelInstance);
     }
+
+    /**
+     * 可以生成正常的bpmn文件，且可以部署和发起流程
+     * 销售主管审批，店长审批
+     * @throws IOException
+     */
+    @Test
+    public void boundary_timer_event_01() throws IOException {
+        String json = "{\n" +
+                "    \"process\": {\n" +
+                "        \"processId\": \"process-id1\",\n" +
+                "        \"name\": \"process-name1\"\n" +
+                "    },\n" +
+                "    \"processNode\": {\n" +
+                "        \"nodeName\": \"销售主管审批\",\n" +
+                "        \"nodeType\": \"userTaskOrSign\",\n" +
+                "        \"multiInstance\": {\n" +
+                "            \"collection\": \"_assignee\"\n" +
+                "        },\n" +
+                "        \"extensionList\": [\n" +
+                "            {\n" +
+                "                \"name\": \"_assignee\",\n" +
+                "                \"value\": \"shop.NC_OfflineContract_Approval.(role:NC_OfflineContract_Approval)\"\n" +
+                "            }\n" +
+                "        ],\n" +
+                "        \"nextNode\": {\n" +
+                "            \"nodeName\": \"超时提醒\",\n" +
+                "            \"nodeType\": \"boundaryEvent\",\n" +
+                "            \"nextNode\": null\n" +
+                "        }\n" +
+                "    }\n" +
+                "}";
+
+        BpmnModelInstance bpmnModelInstance = BpmnBuilder.build(json);
+        Path path = Paths.get(OUT_PATH + testName.getMethodName() + ".bpmn");
+        if (path.toFile().exists()) {
+            path.toFile().delete();
+        }
+        Files.createDirectories(path.getParent());
+        Bpmn.writeModelToFile(Files.createFile(path).toFile(), bpmnModelInstance);
+    }
 }
