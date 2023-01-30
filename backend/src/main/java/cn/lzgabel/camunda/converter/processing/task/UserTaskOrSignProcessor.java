@@ -70,6 +70,11 @@ public class UserTaskOrSignProcessor implements BpmnElementProcessor<UserTaskOrS
             userTaskBuilder.addExtensionElement(camundaProperties);
         }
 
+        // 为UserTask设置超时自动提醒
+        userTaskBuilder.boundaryEvent().name("超时自动提醒").timerWithDuration("${time_duration}")
+                .endEvent().name("提醒通知").messageEventDefinition().camundaType("Delegate Expression").message("${timeoutRemindDelegate}");
+
+
         // create execution listener
         createExecutionListener(flowNodeBuilder, flowNode);
         // 如果当前任务还有后续任务，则遍历创建后续任务
